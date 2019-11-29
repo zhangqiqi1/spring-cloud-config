@@ -1,0 +1,24 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+  application:
+    name: user-service
+mybatis:
+  type-aliases-package: com.zhangqiqi.entity
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath*:mapper/*.xml
+logging:
+  level:
+    com.zhangqiqi.mapper: debug
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1 

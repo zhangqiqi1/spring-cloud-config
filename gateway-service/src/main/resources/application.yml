@@ -1,0 +1,26 @@
+server:
+  port: 11111
+
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    gateway:
+      routes:
+      - id: user-consumer
+        uri: lb://USER-CONSUMER
+        order: 0
+        predicates:
+        - After=2019-11-12T10:02:00.129+08:00[Asia/Shanghai]
+        - Before=2019-11-12T10:03:00.129+08:00[Asia/Shanghai]
+       # - Cookie=token, ch.p  #Cookie路由断言
+       # - Header=X-Request-Id, \d+  #Header路由断言
+        - Path=/consumer/** #路径路由
+        filters:
+        - StripPrefix=1
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+
